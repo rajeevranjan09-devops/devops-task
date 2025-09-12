@@ -1,61 +1,33 @@
-# Logo Server
+# DevOps Task - Node.js on Minikube
 
-A simple Express.js web server that serves the Swayatt logo image.
+This project demonstrates a complete DevOps workflow:
+1. **Build & Test** a Node.js application.
+2. **Dockerize** the app using a lightweight `node:alpine` image.
+3. **Deploy to Kubernetes** (Minikube) using manifests.
+4. **Expose the app** via a Kubernetes Service.
 
-## What is this app?
+---
 
-This is a lightweight Node.js application built with Express.js that serves a single logo image (`logoswayatt.png`) when accessed through a web browser. When you visit the root URL, the server responds by displaying the Swayatt logo.
+## 🛠 Tech Stack
+- **Node.js** (Application runtime)
+- **Docker** (`node:alpine` base image)
+- **Kubernetes** (Deployment & Service)
+- **Minikube** (local Kubernetes cluster)
+- **Jenkins** (optional CI/CD pipeline)
 
-## Prerequisites
+---
 
-- Node.js (version 12 or higher)
-- npm (Node Package Manager)
+## 🚀 Setup Instructions
 
-## Installation
-
-1. Clone or download this repository
-2. Navigate to the project directory:
-   ```bash
-   cd "devops task"
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## How to Start the App
-
-Run the following command:
+### 1. Start Minikube
 ```bash
-npm start
-```
+minikube start
 
-The server will start and display:
-```
-Server running on http://localhost:3000
-```
-
-## Usage
-
-Once the server is running, open your web browser and navigate to:
-```
-http://localhost:3000
-```
-
-You will see the Swayatt logo displayed in your browser.
-
-## Project Structure
-
-```
-├── app.js              # Main server file
-├── package.json        # Project dependencies and scripts
-├── logoswayatt.png     # Logo image file
-└── README.md          # This file
-```
-
-## Technical Details
-
-- **Framework**: Express.js
-- **Port**: 3000
-- **Endpoint**: GET `/` - serves the logo image
-- **File served**: `logoswayatt.png`
+```mermaid 
+flowchart TD
+    A[Developer Code] --> B[Docker Build (node:alpine)]
+    B --> C[Minikube Docker Daemon]
+    C --> D[Kubernetes Deployment]
+    D --> E[Pod Running Node.js App]
+    E --> F[Kubernetes Service (NodePort)]
+    F --> G[User Access via Minikube Service URL]
