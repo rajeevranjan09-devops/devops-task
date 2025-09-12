@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build & Test') {
+            steps {
+                sh 'npm install'
+                sh 'npm test'
+            }
+        }
+
+        stage('Dockerize') {
+            steps {
+                // Switch Docker to use Minikube's daemon
+                sh 'eval $(minikube docker-env)'
+                sh 'docker build -t my-app:latest .'
+            }
+        }
+
+        stage('Deploy to Minikube') {
+            steps {
+                sh 'kubectl apply -f k8s/deployment.yaml'
+                sh 'kubectl apply -f k8s/service.yaml'
+            }
+        }
+    }
+}
