@@ -1,4 +1,4 @@
-FROM node.js:alpine
+FROM node:alpine
 
 WORKDIR /app.js
 COPY  . .
