@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-task-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devops-task
+  template:
+    metadata:
+      labels:
+        app: devops-task
+    spec:
+      containers:
+        - name: devops-task
+          image: devops-task:latest   # use local image built inside Minikube
+          imagePullPolicy: Never      # important so it doesn’t try to pull from DockerHub
+          ports:
+            - containerPort: 3000     # change if your app uses a different port
