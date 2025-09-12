@@ -3,7 +3,7 @@ FROM node:alpine
 WORKDIR /app.js
 COPY  . .
 
-RUN npm insall
+RUN npm install
 
 CMD [ "node" , 'app.js' ]
 
